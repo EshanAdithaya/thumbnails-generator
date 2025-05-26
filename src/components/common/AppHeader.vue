@@ -144,7 +144,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { ImageIcon, MenuIcon, XIcon, GithubIcon } from "lucide-vue-next";
+import { MenuIcon, XIcon, GithubIcon } from "lucide-vue-next";
 
 const mobileMenuOpen = ref(false);
 </script>
