@@ -178,7 +178,6 @@ bun run test:ui      # Run tests with UI
 bun run test:coverage # Run tests with coverage
 
 # Code Quality
-bun run lint         # Lint and fix code
 bun run format       # Format code with Prettier
 bun run type-check   # Check TypeScript types
 ```
@@ -286,7 +285,6 @@ Contributions are welcome! Please follow these steps:
 5. **Run the test suite**
    ```bash
    bun run test
-   bun run lint
    bun run type-check
    ```
 6. **Commit your changes**
