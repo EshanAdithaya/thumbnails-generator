@@ -6,7 +6,7 @@
 
 [![Vue.js](https://img.shields.io/badge/Vue.js-4FC08D?logo=vue.js&logoColor=white&style=flat)](https://vuejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white&style=flat)](https://www.typescriptlang.org/)
-[![Docker](https://img.shields.io/badge/Docker-Ready-01CC1D?logo=docker&style=flat)](https://hub.docker.com/)
+[![Docker](https://img.shields.io/badge/Docker-Ready-01CC1D?logo=docker&style=flat)](https://hub.docker.com/r/malithrukshan/thumb-gen)
 </div>
 
 <h4 align="center">✨ Generate beautiful thumbnails from videos, animations, images, and text — all in your browser! 🚀</h4>
@@ -75,7 +75,11 @@ Protect and brand your images:
 
 ### Online Usage
 
-Visit [thumb-gen.malith.dev](https://thumb-gen.malith.dev) and start generating thumbnails immediately!
+![thumb-gen-ss](https://github.com/user-attachments/assets/ab939a57-791b-4f62-a436-dbadd6a6fbe3)
+
+<div align="center">
+Demo : <a href="https://thumb-gen.malith.de">thumb-gen.malith.dev</a>
+</div>
 
 ## 📦 Deployment Options
 
@@ -91,7 +95,7 @@ Deploy instantly to popular platforms:
 
 ### 🐳 Docker
 
-Run ThumbGen in a container:
+Run [ThumbGen](https://hub.docker.com/r/malithrukshan/thumb-gen) in a container:
 
 ```bash
 # Pull and run
@@ -181,6 +185,13 @@ bun run test:coverage # Run tests with coverage
 bun run format       # Format code with Prettier
 bun run type-check   # Check TypeScript types
 ```
+<details>
+    <summary>Click to view Results</summary>
+<img src="https://github.com/user-attachments/assets/59f6955c-3ae7-40d7-b529-f9a748d6854d" alt="Vitest UI">
+<img src="https://github.com/user-attachments/assets/19694324-498b-4795-b1b2-6228b7523de1" alt="Vitest CLI">
+</br>
+Test with : https://vitest.dev/
+</details>
 
 ### ☁️ Platform-Specific Deployment
 
@@ -242,34 +253,6 @@ bun run test:ui
 - **Build Tool**: Vite for fast development and building
 - **Testing**: Vitest with Vue Test Utils
 - **Package Manager**: Bun for fast dependency management
-
-## 📚 API Reference
-
-### Canvas Utilities
-
-```typescript
-// Create a canvas element
-const canvas = createCanvas(width, height)
-
-// Resize an image
-const resizedCanvas = await resizeImage(image, newWidth, newHeight)
-
-// Generate base64 preview
-const base64 = await generateBase64Preview(canvas, quality)
-```
-
-### File Helpers
-
-```typescript
-// Format file size
-const size = formatFileSize(bytes) // "1.5 MB"
-
-// Format duration
-const duration = formatDuration(seconds) // "2:05"
-
-// Validate image file
-const isValid = validateImageFile(file) // boolean
-```
 
 ## 🤝 Contributing
 
