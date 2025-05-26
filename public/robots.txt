@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://thumb-gen.malith.dev/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 1
+
+# Disallow certain paths (if any)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Allow specific paths for better indexing
+Allow: /video-thumbnail-generator
+Allow: /lottie-thumbnail-generator
+Allow: /base64-image-converter
+Allow: /text-thumbnail-generator
+Allow: /watermark-tool
+Allow: /privacy-policy

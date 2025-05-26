@@ -1,0 +1,21 @@
+{
+  "name": "ThumbGen - Free Online Thumbnail Generator",
+  "short_name": "ThumbGen",
+  "description": "Generate beautiful thumbnails from videos, Lottie animations, and create custom text thumbnails",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3B82F6",
+  "icons": [
+    {
+      "src": "/logo-small.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

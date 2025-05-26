@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Theme initialization script -->
+    <script>
+      // Prevent flash of incorrect theme
+      const savedTheme = localStorage.getItem('thumb-gen-theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      if (savedTheme === 'dark' || (savedTheme !== 'light' && prefersDark)) {
+        document.documentElement.classList.remove('light');
+        document.documentElement.classList.add('dark');
+      }
+    </script>
+    
+    <!-- SEO Meta Tags -->
+    <title>ThumbGen - Free Online Thumbnail Generator | Video, Lottie, Image & Text Thumbnails</title>
+    <meta name="description" content="Generate professional thumbnails from videos, Lottie animations, images, and text. Free online tool with watermark support, Base64 conversion, and batch processing. No signup required!">
+    <meta name="keywords" content="thumbnail generator, video thumbnail, lottie thumbnail, base64 converter, image thumbnail, text thumbnail, watermark tool, online thumbnail maker, free thumbnail creator, batch thumbnail generator">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thumb-gen.malith.dev/">
+    <meta property="og:title" content="ThumbGen - Free Online Thumbnail Generator">
+    <meta property="og:description" content="Generate professional thumbnails from videos, Lottie animations, images, and text. Free online tool with no signup required!">
+    <meta property="og:image" content="https://thumb-gen.malith.dev/og-image.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://thumb-gen.malith.dev/">
+    <meta property="twitter:title" content="ThumbGen - Free Online Thumbnail Generator">
+    <meta property="twitter:description" content="Generate professional thumbnails from videos, Lottie animations, images, and text. Free online tool!">
+    <meta property="twitter:image" content="https://thumb-gen.malith.dev/og-image.png">
+    
+    <!-- PWA -->
+    <meta name="theme-color" content="#3b82f6">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "ThumbGen",
+      "description": "Free online thumbnail generator for videos, Lottie animations, images, and text",
+      "url": "https://thumb-gen.malith.dev",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "creator": {
+        "@type": "Person",
+        "name": "Malith Rukshan",
+        "url": "https://github.com/Malith-Rukshan"
+      }
+    }
+    </script>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://thumb-gen.malith.dev/">
+    
+    <!-- Language alternatives -->
+    <link rel="alternate" hreflang="en" href="https://thumb-gen.malith.dev/">
+    <link rel="alternate" hreflang="x-default" href="https://thumb-gen.malith.dev/">
+  </head>
+  <body>
+    <noscript>
+      <div style="text-align: center; padding: 50px; font-family: system-ui, sans-serif;">
+        <h1>JavaScript Required</h1>
+        <p>ThumbGen requires JavaScript to be enabled. Please enable JavaScript in your browser settings to use this application.</p>
+      </div>
+    </noscript>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

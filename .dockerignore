@@ -1,0 +1,123 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+tests/
+*.test.ts
+*.spec.ts
+vitest.config.*
+playwright.config.*
+jest.config.*
+
+# Build outputs
+dist/
+build/
+.output/
+
+# Development files
+*.local
+.env*.local
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+
+# Documentation
+*.md
+docs/
+LICENSE
+
+# Bun specific
+bun.lockb
+.bun/
+
+# Cache
+.cache/
+.turbo/
+.parcel-cache/
+.next/
+.nuxt/
+.vuepress/dist/
+.temp/
+.vercel/
+.netlify/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# OS files
+Thumbs.db
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
+
+# Editor directories and files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Package manager files (except package.json)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Config files not needed in Docker
+.eslintrc*
+.prettierrc*
+.stylelintrc*
+.editorconfig
+tsconfig.json
+tsconfig.*.json
+vite.config.ts.timestamp-*
+postcss.config.*
+tailwind.config.*
+
+# Docker files themselves
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Deployment configs
+vercel.json
+netlify.toml
+railway.toml
+app.json
+
+# Source maps
+*.map
+
+# Temporary files
+*.tmp
+*.temp

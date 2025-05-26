@@ -1,0 +1,45 @@
+{
+  "name": "ThumbGen",
+  "description": "Generate beautiful thumbnails from videos, animations, images, and text — all in your browser!",
+  "repository": "https://github.com/Malith-Rukshan/thumb-gen",
+  "logo": "https://thumb-gen.malith.dev/logo.png",
+  "keywords": [
+    "thumbnail",
+    "generator",
+    "video",
+    "image",
+    "canvas",
+    "vue",
+    "typescript",
+    "privacy"
+  ],
+  "success_url": "/",
+  "scripts": {
+    "dokku": {
+      "postdeploy": "echo 'ThumbGen deployed successfully!'"
+    }
+  },
+  "env": {
+    "NODE_ENV": {
+      "description": "Node environment",
+      "value": "production"
+    },
+    "BUILD_COMMAND": {
+      "description": "Build command",
+      "value": "bun run build"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "image": "heroku/nodejs",
+  "buildpacks": [
+    {
+      "url": "https://github.com/oven-sh/heroku-buildpack-bun"
+    }
+  ],
+  "stack": "heroku-22"
+}
