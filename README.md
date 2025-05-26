@@ -1,5 +1,5 @@
 <p style="text-align:center;" align="center">
-  <img align="center" src="./public/logo-promo.png" alt="ThumbGen" width="256px" height="256px"/>
+  <img align="center" src="https://raw.githubusercontent.com/Malith-Rukshan/thumb-gen/refs/heads/main/public/logo-promo.png" alt="ThumbGen" width="300px" height="300px"/>
 </p>
 <h1 align="center">ThumbGen</h1>
 <div align='center'>
@@ -86,7 +86,7 @@ Deploy instantly to popular platforms:
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Malith-Rukshan/thumb-gen)
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/Malith-Rukshan/thumb-gen)
 
-[![Deploy to Railway](https://railway.app/button.svg)](https://railway.app/template/ThumbGen)
+[![Deploy to Railway](https://railway.app/button.svg)](https://railway.app/template/iV-Ljt)
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Malith-Rukshan/thumb-gen)
 
 ### 🐳 Docker
