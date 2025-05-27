@@ -164,7 +164,6 @@
       <!-- Lottie Player -->
       <LottiePlayer
         :animation-data="animationData"
-        :container-height="400"
         @loaded="handleAnimationLoaded"
         @frame-captured="handleFrameCapture"
         @error="errorMessage = $event"

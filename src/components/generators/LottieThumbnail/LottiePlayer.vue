@@ -2,18 +2,16 @@
   <div class="space-y-4">
     <!-- Lottie Container -->
     <div class="relative bg-gray-100 rounded-lg overflow-hidden">
-      <div
-        ref="lottieContainer"
-        class="w-full flex items-center justify-center"
-        :style="{ height: containerHeight + 'px' }"
-      />
+      <div ref="lottieContainer" class="flex items-center justify-center" :style="{
+        width: animationWidth + 'px',
+        height: animationHeight + 'px',
+        maxWidth: '100%',
+        margin: '0 auto'
+      }" />
 
       <!-- Loading overlay -->
       <Transition name="fade">
-        <div
-          v-if="isLoading"
-          class="absolute inset-0 bg-black/50 flex items-center justify-center"
-        >
+        <div v-if="isLoading" class="absolute inset-0 bg-black/50 flex items-center justify-center">
           <LoadingSpinner text="Loading animation..." />
         </div>
       </Transition>
@@ -25,31 +23,18 @@
       <div class="space-y-2">
         <div class="flex items-center justify-between text-sm text-gray-600">
           <span>Frame {{ Math.floor(currentFrame) }} / {{ totalFrames }}</span>
-          <span
-            >{{ formatDuration(currentTime) }} /
-            {{ formatDuration(duration) }}</span
-          >
+          <span>{{ formatDuration(currentTime) }} /
+            {{ formatDuration(duration) }}</span>
         </div>
 
         <div class="relative">
-          <input
-            v-model.number="currentFrame"
-            type="range"
-            :min="0"
-            :max="totalFrames"
-            :step="1"
-            @input="handleSeek"
-            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
-          />
+          <input v-model.number="currentFrame" type="range" :min="0" :max="totalFrames" :step="1" @input="handleSeek"
+            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider" />
 
           <!-- Frame markers -->
           <div class="absolute inset-0 pointer-events-none">
-            <div
-              v-for="frame in capturedFrames"
-              :key="frame.id"
-              :style="{ left: `${(frame.frame / totalFrames) * 100}%` }"
-              class="absolute top-0 w-0.5 h-2 bg-blue-600"
-            />
+            <div v-for="frame in capturedFrames" :key="frame.id"
+              :style="{ left: `${(frame.frame / totalFrames) * 100}%` }" class="absolute top-0 w-0.5 h-2 bg-blue-600" />
           </div>
         </div>
       </div>
@@ -57,46 +42,31 @@
       <!-- Control buttons -->
       <div class="flex items-center justify-center space-x-4">
         <!-- Frame backward -->
-        <button
-          @click="previousFrame"
-          class="p-2 text-gray-600 hover:text-gray-900 transition-colors"
-          title="Previous frame"
-        >
+        <button @click="previousFrame" class="p-2 text-gray-600 hover:text-gray-900 transition-colors"
+          title="Previous frame">
           <ChevronLeftIcon class="w-5 h-5" />
         </button>
 
         <!-- Step backward -->
-        <button
-          @click="stepBackward"
-          class="p-2 text-gray-600 hover:text-gray-900 transition-colors"
-          title="Step backward 10 frames"
-        >
+        <button @click="stepBackward" class="p-2 text-gray-600 hover:text-gray-900 transition-colors"
+          title="Step backward 10 frames">
           <SkipBackIcon class="w-5 h-5" />
         </button>
 
         <!-- Play/Pause -->
-        <button
-          @click="togglePlayPause"
-          class="p-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
-        >
+        <button @click="togglePlayPause"
+          class="p-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
           <component :is="isPlaying ? PauseIcon : PlayIcon" class="w-6 h-6" />
         </button>
 
         <!-- Step forward -->
-        <button
-          @click="stepForward"
-          class="p-2 text-gray-600 hover:text-gray-900 transition-colors"
-          title="Step forward 10 frames"
-        >
+        <button @click="stepForward" class="p-2 text-gray-600 hover:text-gray-900 transition-colors"
+          title="Step forward 10 frames">
           <SkipForwardIcon class="w-5 h-5" />
         </button>
 
         <!-- Frame forward -->
-        <button
-          @click="nextFrame"
-          class="p-2 text-gray-600 hover:text-gray-900 transition-colors"
-          title="Next frame"
-        >
+        <button @click="nextFrame" class="p-2 text-gray-600 hover:text-gray-900 transition-colors" title="Next frame">
           <ChevronRightIcon class="w-5 h-5" />
         </button>
       </div>
@@ -105,17 +75,12 @@
       <div class="flex items-center justify-center space-x-4">
         <label class="text-sm text-gray-600">Speed:</label>
         <div class="flex items-center space-x-2">
-          <button
-            v-for="speed in playbackSpeeds"
-            :key="speed"
-            @click="setPlaybackSpeed(speed)"
-            :class="[
-              'px-2 py-1 text-sm rounded transition-colors',
-              playbackSpeed === speed
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200',
-            ]"
-          >
+          <button v-for="speed in playbackSpeeds" :key="speed" @click="setPlaybackSpeed(speed)" :class="[
+            'px-2 py-1 text-sm rounded transition-colors',
+            playbackSpeed === speed
+              ? 'bg-blue-600 text-white'
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200',
+          ]">
             {{ speed }}x
           </button>
         </div>
@@ -123,11 +88,8 @@
 
       <!-- Capture button -->
       <div class="flex justify-center">
-        <button
-          @click="captureFrame"
-          :disabled="!animation"
-          class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors inline-flex items-center gap-2"
-        >
+        <button @click="captureFrame" :disabled="!animation"
+          class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors inline-flex items-center gap-2">
           <CameraIcon class="w-5 h-5" />
           Capture Frame
         </button>
@@ -135,12 +97,9 @@
 
       <!-- Quick capture options -->
       <div class="flex flex-wrap justify-center gap-2">
-        <button
-          v-for="option in quickCaptureOptions"
-          :key="option.label"
+        <button v-for="option in quickCaptureOptions" :key="option.label"
           @click="quickCapture(option.count, option.interval)"
-          class="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors"
-        >
+          class="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors">
           {{ option.label }}
         </button>
       </div>
@@ -166,7 +125,6 @@ import type { LottieFrame } from "@/types";
 
 const props = defineProps<{
   animationData: any;
-  containerHeight?: number;
 }>();
 
 const emit = defineEmits<{
@@ -186,6 +144,8 @@ const duration = ref(0);
 const frameRate = ref(30);
 const playbackSpeed = ref(1);
 const capturedFrames = ref<LottieFrame[]>([]);
+const animationWidth = ref(512);
+const animationHeight = ref(512);
 
 const playbackSpeeds = [0.25, 0.5, 1, 1.5, 2];
 
@@ -215,6 +175,11 @@ function initializeLottie() {
 
     animation.value.addEventListener("DOMLoaded", () => {
       if (!animation.value) return;
+
+      // Get animation dimensions from the animation data
+      const animData = props.animationData;
+      animationWidth.value = animData.w || 512;
+      animationHeight.value = animData.h || 512;
 
       totalFrames.value = animation.value.totalFrames;
       frameRate.value = animation.value.frameRate;
