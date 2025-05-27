@@ -1,5 +1,4 @@
-// Simple service worker for ThumbGen
-const CACHE_NAME = 'thumb-gen-v1';
+const CACHE_NAME = 'thumb-gen-v1.0.1';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
@@ -18,8 +17,7 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Optional: Add offline support
+// Add offline support
 self.addEventListener('fetch', (event) => {
-  // For now, just fetch normally
   event.respondWith(fetch(event.request));
 });
