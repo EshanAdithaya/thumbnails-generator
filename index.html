@@ -5,18 +5,6 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Theme initialization script -->
-    <script>
-      // Prevent flash of incorrect theme
-      const savedTheme = localStorage.getItem('thumb-gen-theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      
-      if (savedTheme === 'dark' || (savedTheme !== 'light' && prefersDark)) {
-        document.documentElement.classList.remove('light');
-        document.documentElement.classList.add('dark');
-      }
-    </script>
-    
     <!-- SEO Meta Tags -->
     <title>ThumbGen - Free Online Thumbnail Generator | Video, Lottie, Image & Text Thumbnails</title>
     <meta name="description" content="Generate professional thumbnails from videos, Lottie animations, images, and text. Free online tool with watermark support, Base64 conversion, and batch processing. No signup required!">
