@@ -117,7 +117,12 @@
             </router-link>
             <span class="text-sm text-gray-500">•</span>
             <span class="text-sm text-gray-600">
-              Open Source • MIT License
+              Open Source •
+              <a
+                href="https://github.com/Malith-Rukshan/thumb-gen/blob/main/LICENSE"
+                target="_blank"
+                >MIT License</a
+              >
             </span>
           </div>
         </div>
