@@ -1,17 +1,4 @@
 {
   "status": "healthy",
-  "timestamp": "2025-01-26T13:45:00Z",
-  "version": "1.0.1",
-  "uptime": "24h",
-  "services": {
-    "frontend": "healthy",
-    "canvas": "healthy",
-    "file_processing": "healthy"
-  },
-  "checks": {
-    "canvas_support": true,
-    "file_api_support": true,
-    "blob_support": true,
-    "webworker_support": true
-  }
+  "version": "1.0.1"
 }
