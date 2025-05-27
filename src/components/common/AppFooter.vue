@@ -73,7 +73,7 @@
               GitHub Repository
             </a>
             <a
-              href="https://github.com/Malith-Rukshan"
+              href="https://malith.dev"
               target="_blank"
               rel="noopener noreferrer"
               class="text-sm text-gray-600 hover:text-blue-600 transition-colors inline-flex items-center gap-1"
