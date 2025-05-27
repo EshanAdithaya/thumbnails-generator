@@ -125,7 +125,6 @@
               <a
                 href="https://github.com/Malith-Rukshan/animated-country-flags"
                 target="_blank"
-                rel="noopener noreferrer"
                 class="text-blue-600 hover:text-blue-800 underline ml-1"
               >
                 Beautiful animated country flags in multiple formats for your

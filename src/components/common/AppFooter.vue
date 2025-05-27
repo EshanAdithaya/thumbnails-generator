@@ -103,7 +103,6 @@
             <a
               href="https://github.com/Malith-Rukshan"
               target="_blank"
-              rel="noopener noreferrer"
               class="text-blue-600 hover:underline"
             >
               Malith Rukshan

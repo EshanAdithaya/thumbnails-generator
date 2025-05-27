@@ -40,7 +40,6 @@
         <a
           href="https://github.com/Malith-Rukshan/thumb-gen/issues"
           target="_blank"
-          rel="noopener noreferrer"
           class="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
         >
           <MessageSquareIcon class="w-5 h-5" />

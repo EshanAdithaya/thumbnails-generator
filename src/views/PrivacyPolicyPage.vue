@@ -92,7 +92,6 @@
           <a
             href="https://github.com/Malith-Rukshan/thumb-gen"
             target="_blank"
-            rel="noopener noreferrer"
             class="text-blue-600 hover:underline"
           >
             GitHub
@@ -109,7 +108,6 @@
           <a
             href="https://github.com/Malith-Rukshan/thumb-gen/issues"
             target="_blank"
-            rel="noopener noreferrer"
             class="text-blue-600 hover:underline"
           >
             GitHub repository </a
