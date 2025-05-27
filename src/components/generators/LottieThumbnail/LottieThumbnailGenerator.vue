@@ -248,7 +248,7 @@
         <div class="mt-6 p-6 bg-gray-50 rounded-lg space-y-4">
           <h4 class="text-base font-medium text-gray-900">Export Options</h4>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <!-- Format -->
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-2">
@@ -294,6 +294,85 @@
                 <option value="checkerboard">Checkerboard</option>
               </select>
             </div>
+
+            <!-- Resolution Type -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">
+                Resolution
+              </label>
+              <select
+                v-model="exportOptions.useCustomResolution"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option :value="false">Square (1:1)</option>
+                <option :value="true">Custom Size</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Square Resolution Selection -->
+          <div v-if="!exportOptions.useCustomResolution" class="space-y-2">
+            <label class="block text-sm font-medium text-gray-700">
+              Square Resolution
+            </label>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
+              <button
+                v-for="resolution in commonResolutions"
+                :key="resolution.value"
+                @click="exportOptions.resolution = resolution.value"
+                :class="[
+                  'px-3 py-2 text-sm rounded-lg border transition-colors text-left',
+                  exportOptions.resolution === resolution.value
+                    ? 'bg-blue-600 text-white border-blue-600'
+                    : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50',
+                ]"
+              >
+                <div class="font-medium">
+                  {{ resolution.value }}×{{ resolution.value }}
+                </div>
+                <div class="text-xs opacity-75">
+                  {{ resolution.label.split(" (")[1]?.replace(")", "") || "" }}
+                </div>
+              </button>
+            </div>
+
+            <!-- Original resolution indicator -->
+            <div v-if="animationData" class="text-xs text-gray-500 mt-2">
+              Original: {{ animationData.w || 512 }}×{{
+                animationData.h || 512
+              }}px
+              <span v-if="animationData.w !== animationData.h"
+                >(will be cropped to square)</span
+              >
+            </div>
+          </div>
+
+          <!-- Custom Resolution Inputs -->
+          <div v-else class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">
+                Width (px)
+              </label>
+              <input
+                v-model.number="exportOptions.customWidth"
+                type="number"
+                min="1"
+                max="4096"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">
+                Height (px)
+              </label>
+              <input
+                v-model.number="exportOptions.customHeight"
+                type="number"
+                min="1"
+                max="4096"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
           </div>
 
           <!-- Export buttons -->
@@ -305,6 +384,13 @@
             >
               <DownloadIcon class="w-4 h-4" />
               Export Selected ({{ selectedFrames.length }})
+              <span class="text-xs opacity-75">
+                {{
+                  exportOptions.useCustomResolution
+                    ? `${exportOptions.customWidth}×${exportOptions.customHeight}`
+                    : `${exportOptions.resolution}×${exportOptions.resolution}`
+                }}
+              </span>
             </button>
             <button
               @click="exportAllFrames"
@@ -359,11 +445,27 @@ const duration = ref(0);
 const capturedFrames = ref<LottieFrame[]>([]);
 const errorMessage = ref("");
 const isExporting = ref(false);
+const originalResolution = ref(512);
+const commonResolutions = [
+  { label: "20×20 (Tiny Icon)", value: 20 },
+  { label: "32×32 (Small Icon)", value: 32 },
+  { label: "48×48 (Icon)", value: 48 },
+  { label: "64×64 (Icon)", value: 64 },
+  { label: "96×96 (Large Icon)", value: 96 },
+  { label: "128×128 (App Icon)", value: 128 },
+  { label: "256×256 (App Icon)", value: 256 },
+  { label: "512×512 (Standard)", value: 512 },
+  { label: "1024×1024 (Large)", value: 1024 },
+];
 
 const exportOptions = ref<ExportOptions>({
   format: "png",
   quality: 90,
   background: "transparent",
+  resolution: 512,
+  useCustomResolution: false,
+  customWidth: 512,
+  customHeight: 512,
 });
 
 const selectedFrames = computed(() =>
@@ -440,6 +542,24 @@ function loadExampleTGS() {
 function handleAnimationLoaded(frames: number, animDuration: number) {
   totalFrames.value = frames;
   duration.value = animDuration;
+
+  // Set original resolution
+  if (animationData.value) {
+    const width = animationData.value.w || 512;
+    const height = animationData.value.h || 512;
+    originalResolution.value = Math.max(width, height); // Use larger dimension for square
+
+    // Auto-select original resolution if it exists in common resolutions
+    const matchingResolution = commonResolutions.find(
+      (r) => r.value === Math.min(width, height),
+    );
+    if (matchingResolution) {
+      exportOptions.value.resolution = matchingResolution.value;
+    } else {
+      // Add original resolution as custom option if not in common list
+      exportOptions.value.resolution = Math.min(width, height);
+    }
+  }
 }
 
 function handleFrameCapture(frame: LottieFrame) {
@@ -492,11 +612,23 @@ async function exportFrames(frames: LottieFrame[]) {
         img.src = frame.thumbnail;
         await new Promise((resolve) => (img.onload = resolve));
 
-        // Create canvas with proper background
+        // Determine target dimensions
+        const targetWidth = exportOptions.value.useCustomResolution
+          ? exportOptions.value.customWidth
+          : exportOptions.value.resolution;
+        const targetHeight = exportOptions.value.useCustomResolution
+          ? exportOptions.value.customHeight
+          : exportOptions.value.resolution;
+
+        if (targetWidth == undefined || targetHeight === undefined) {
+          throw new Error("Invalid target dimensions");
+        }
+
+        // Create canvas with target size
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d")!;
-        canvas.width = img.width;
-        canvas.height = img.height;
+        canvas.width = targetWidth;
+        canvas.height = targetHeight;
 
         // Apply background
         if (exportOptions.value.background === "white") {
@@ -513,16 +645,32 @@ async function exportFrames(frames: LottieFrame[]) {
           ctx.drawImage(checkerboard, 0, 0);
         }
 
-        // Draw image
-        ctx.drawImage(img, 0, 0);
+        // Calculate scaling and positioning for the image
+        const scale = Math.min(
+          targetWidth / img.width,
+          targetHeight / img.height,
+        );
+        const scaledWidth = img.width * scale;
+        const scaledHeight = img.height * scale;
+        const x = (targetWidth - scaledWidth) / 2;
+        const y = (targetHeight - scaledHeight) / 2;
+
+        // Draw image with proper scaling and centering
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = "high";
+        ctx.drawImage(img, x, y, scaledWidth, scaledHeight);
 
         // Convert to blob
         const blob = await canvasToBlob(canvas, exportOptions.value);
 
+        const dimensions = exportOptions.value.useCustomResolution
+          ? `${targetWidth}x${targetHeight}`
+          : `${exportOptions.value.resolution}x${exportOptions.value.resolution}`;
+
         return {
           blob,
           name: generateFileName(
-            `lottie_frame_${frame.frame}`,
+            `lottie_frame_${frame.frame}_${dimensions}`,
             index,
             exportOptions.value.format,
           ),

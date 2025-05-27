@@ -15,6 +15,10 @@ export interface ExportOptions {
   quality: number;
   dimensions?: Dimensions;
   background?: "transparent" | "white" | "black" | "checkerboard";
+  resolution?: number;
+  useCustomResolution?: boolean;
+  customWidth?: number;
+  customHeight?: number;
 }
 
 // Video types
