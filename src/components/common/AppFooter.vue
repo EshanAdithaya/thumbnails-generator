@@ -66,7 +66,6 @@
             <a
               href="https://github.com/Malith-Rukshan/thumb-gen"
               target="_blank"
-              rel="noopener noreferrer"
               class="text-sm text-gray-600 hover:text-blue-600 transition-colors inline-flex items-center gap-1"
             >
               <GithubIcon class="w-4 h-4" />
@@ -75,7 +74,6 @@
             <a
               href="https://malith.dev"
               target="_blank"
-              rel="noopener noreferrer"
               class="text-sm text-gray-600 hover:text-blue-600 transition-colors inline-flex items-center gap-1"
             >
               <UserIcon class="w-4 h-4" />
@@ -84,7 +82,6 @@
             <a
               href="https://github.com/Malith-Rukshan/thumb-gen/issues"
               target="_blank"
-              rel="noopener noreferrer"
               class="text-sm text-gray-600 hover:text-blue-600 transition-colors inline-flex items-center gap-1"
             >
               <MessageSquareIcon class="w-4 h-4" />
