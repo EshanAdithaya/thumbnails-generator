@@ -78,7 +78,7 @@ Protect and brand your images:
 ![thumb-gen-ss](https://github.com/user-attachments/assets/ab939a57-791b-4f62-a436-dbadd6a6fbe3)
 
 <div align="center">
-Demo : <a href="https://thumb-gen.malith.de">thumb-gen.malith.dev</a>
+Demo : <a href="https://thumb-gen.malith.dev">thumb-gen.malith.dev</a>
 </div>
 
 ## 📦 Deployment Options
