@@ -53,7 +53,7 @@ Create ultra-light image placeholders:
 - **Progressive loading**: Smooth transition effects
 - **Code generation**: HTML, CSS, React, Vue snippets
 - **Size optimization**: See exact byte savings
-- **Perfect for**: Website performance, blur-up effects, email templates
+- **Perfect for**: Website performance, blur-up effects, email template
 
 ### Text Thumbnail Generator
 Design custom text-based graphics:
